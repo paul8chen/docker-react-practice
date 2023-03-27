@@ -1,4 +1,4 @@
-name: Deploy master
+name: Deploy Fronred
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
       # - name: Checkout source code
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t cygnetops/react-test -f Dockerfile .
+      - run: docker build -t cygnetops/react-test -f Dockerfile.dev .
       - run: docker run -e CI=true cygnetops/react-test npm test
 
       - name: Generate deployment package
